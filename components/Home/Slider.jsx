@@ -41,7 +41,9 @@ export default function Slider() {
             <Image source={{uri: item.imageUrl}}
                 style={{
                     width: 360,
-                    height: 160
+                    height: 160,
+                    borderRadius: 15,
+                    marginRight: 20
                 }}
             />
         )}
