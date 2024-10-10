@@ -47,9 +47,9 @@ export default function PopularBusinessCard({business}) {
                 fontFamily:'outfit',
                 padding:3,
                 color:'#fff',
-                fontSize:10,
+                fontSize:12,
                 backgroundColor:Colors.PRIMARY,
-                borderRadius:5
+                borderRadius: 5
             }}>{business.category}</Text>
         </View>
       </View>
