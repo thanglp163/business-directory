@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 import { Rating } from 'react-native-ratings';
 import { Colors } from '../../constants/Colors';
@@ -23,7 +23,8 @@ export default function Reviews({ business }) {
                     rating: rating,
                     comment: userInput,
                     userName: user?.fullName,
-                    userImage: user?.imageUrl
+                    userImage: user?.imageUrl,
+                    userEmail:user?.primaryEmailAddress?.emailAddress
                 }),
             });
 
@@ -36,7 +37,7 @@ export default function Reviews({ business }) {
                 duration: 2000,
                 titleStyle: { textAlign: 'center' },
                 descriptionStyle: { textAlign: 'center' },
-                style: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10, alignSelf: 'center', width: '90%' },
+                style: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5, paddingVertical: 2.5, borderRadius: 10, alignSelf: 'center', width: '70%', flexDirection: 'row'},
             });
         } catch (error) {
             console.error('Error adding review:', error);
@@ -55,7 +56,7 @@ export default function Reviews({ business }) {
                 />
                 <TextInput
                     placeholder='Write your comment'
-                    numberOfLines={4}
+                    multiline={true}
                     onChangeText={(value) => setUserInput(value)}
                     style={{
                         borderWidth: 1,
@@ -63,6 +64,7 @@ export default function Reviews({ business }) {
                         borderRadius: 10,
                         borderColor: Colors.GRAY,
                         textAlignVertical: 'top',
+                        height: 100
                     }}
                 />
                 <TouchableOpacity
@@ -87,6 +89,46 @@ export default function Reviews({ business }) {
                 </TouchableOpacity>
             </View>
             <FlashMessage position="top" />
+            {/* Display Previous Reviews */}
+            
+            <View>
+                {business?.reviews?.map((item, index) => (
+                    <View style={{
+                        display:'flex',
+                        flexDirection:'row',
+                        gap: 10,
+                        alignItems:'center',
+                        padding: 10,
+                        borderWidth: 1,
+                        borderColor: Colors.GRAY,
+                        borderRadius: 15,
+                        marginTop: 10
+
+                    }}>
+                        <Image source={{uri:item.userImage}}
+                            style={{
+                                width:50,
+                                height:50,
+                                borderRadius:99
+                            }}
+                        />
+                        <View style={{
+                            display:'flex',
+                            gap:5
+                        }}>
+                            <Text style={{
+                                fontFamily:'outfit-medium'
+                            }}>{item.userName}</Text>
+                            <Rating
+                                imageSize={20}
+                                ratingCount={item.rating}
+                                style={{ alignItems:'flex-start'}}
+                            />
+                            <Text>{item.comment}</Text>
+                        </View>
+                    </View>
+                ))}
+            </View>
         </View>
     );
 }
