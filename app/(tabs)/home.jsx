@@ -16,10 +16,7 @@ export default function home() {
         <Category />
       {/* Popular Business List */}
         <PopularBusiness />
-
-        <View style={{height:50}}>
-
-        </View> 
+          <View style={{height:50}}></View> 
     </ScrollView>
   )
 }
