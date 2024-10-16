@@ -5,16 +5,18 @@ import { Colors } from "../../constants/Colors";
 import Category from "../../components/Home/Category";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../configs/FirebaseConfig";
+import ExploreBusinessList from "../../components/Explore/ExploreBusinessList";
 
 
 export default function explore() {
 
   const [businessList, setBusinessList] = useState([]);
   const GetBusinessByCategory = async (category) => {
+    setBusinessList([]);
     const q = query(collection(db, 'BusinessList'), where('category', '==', category))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc.data())
+      console.log(doc.data()) 
       setBusinessList(prev => [...prev,{id:doc.id, ...doc.data()}])
     })
   }
@@ -63,7 +65,7 @@ export default function explore() {
             onCategorySelect={(category) => GetBusinessByCategory(category)}
           />
       {/* Business List */}
-      
+      <ExploreBusinessList businessList = {businessList}/>
     </View>
   );
 }
