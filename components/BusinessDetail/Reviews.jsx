@@ -121,7 +121,8 @@ export default function Reviews({ business }) {
                             }}>{item.userName}</Text>
                             <Rating
                                 imageSize={20}
-                                ratingCount={item.rating}
+                                startingValue={item.rating}
+                                readonly={true}
                                 style={{ alignItems:'flex-start'}}
                             />
                             <Text>{item.comment}</Text>
