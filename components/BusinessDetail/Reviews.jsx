@@ -88,7 +88,7 @@ export default function Reviews({ business }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-            <FlashMessage position="top" />
+            <FlashMessage position="absolute" />
             {/* Display Previous Reviews */}
             
             <View>

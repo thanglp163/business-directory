@@ -8,6 +8,7 @@ import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
 import { db, storage } from "../../configs/FirebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useUser } from "@clerk/clerk-expo";
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 export default function AddBusiness() {
     const navigation = useNavigation();
@@ -73,20 +74,34 @@ export default function AddBusiness() {
     }
 
     const saveBusinessDetail = async (imageUrl) => {
-        await setDoc(doc(db, 'BusinessList', Date.now().toString()),{
-            name: name,
-            contact: contact,
-            address: address,
-            website: website,
-            about: about,
-            category: category,
-            username: user?.fullName,
-            userEmail: user?.primaryEmailAddress?.emailAddress,
-            userImage: user?.imageUrl,
-            imageUrl: imageUrl
-        })
-        setLoading(false);
-        ToastAndroid.show('New Business Added...', ToastAndroid.LONG)
+        try {
+            await setDoc(doc(db, 'BusinessList', Date.now().toString()),{
+                name: name,
+                contact: contact,
+                address: address,
+                website: website,
+                about: about,
+                category: category,
+                username: user?.fullName,
+                userEmail: user?.primaryEmailAddress?.emailAddress,
+                userImage: user?.imageUrl,
+                imageUrl: imageUrl
+            });
+            setLoading(false);
+            showMessage({
+                message: 'Business Added Successfully!',
+                type: 'success',
+                icon: { icon: 'success', position: 'left' },
+                backgroundColor: Colors.PRIMARY,
+                color: '#fff',
+                duration: 2000,
+                titleStyle: { textAlign: 'center' },
+                descriptionStyle: { textAlign: 'center' },
+                style: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5, paddingVertical: 2.5, borderRadius: 10, alignSelf: 'center', width: '70%', flexDirection: 'row'},
+            });
+        }  catch (error) {
+            console.error('Error Adding Business:', error);
+        }
     }
 
     return (
@@ -227,6 +242,9 @@ export default function AddBusiness() {
                 }}>Add New Business</Text>
             }
             </TouchableOpacity>
+            <FlashMessage position="absolute" style={{
+                alignItems: 'center'
+            }}/>
         </View>
     )
 }
