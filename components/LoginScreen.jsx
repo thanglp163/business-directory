@@ -32,7 +32,7 @@ export default function LoginScreen() {
         alignItems: 'center',
         marginTop:100
       }}>
-        <Image source={require('./../assets/images/ong1.jpg')} 
+        <Image source={require('./../assets/images/login-screen.jpg')} 
             style={{
                 width: 220,
                 height: 450,
