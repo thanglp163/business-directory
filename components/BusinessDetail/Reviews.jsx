@@ -40,7 +40,7 @@ export default function Reviews({ business }) {
                 style: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5, paddingVertical: 2.5, borderRadius: 10, alignSelf: 'center', width: '70%', flexDirection: 'row'},
             });
         } catch (error) {
-            console.error('Error adding review:', error);
+            console.error('Error Adding Review:', error);
         }
     };
 
@@ -64,7 +64,7 @@ export default function Reviews({ business }) {
                         borderRadius: 10,
                         borderColor: Colors.GRAY,
                         textAlignVertical: 'top',
-                        height: 100
+                        height: 60
                     }}
                 />
                 <TouchableOpacity

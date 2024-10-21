@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, TextInput, ActivityIndicator, ToastAndroid } from "react-native";
+import { View, Text, Image, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import { Colors } from "../../constants/Colors";
@@ -26,7 +26,10 @@ export default function AddBusiness() {
     useEffect(() => {
         navigation.setOptions({
             headerTitle: 'Add New Business',
-            headerShown: true
+            headerShown: true,
+            headerStyle: {
+                backgroundColor: Colors.PRIMARY
+            }
         })
         getCategoryList();
     }, [])
@@ -242,9 +245,7 @@ export default function AddBusiness() {
                 }}>Add New Business</Text>
             }
             </TouchableOpacity>
-            <FlashMessage position="absolute" style={{
-                alignItems: 'center'
-            }}/>
+            <FlashMessage position="absolute"/>
         </View>
     )
 }
