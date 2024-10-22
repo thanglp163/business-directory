@@ -46,7 +46,7 @@ export default function MyBusiness() {
         <Text style={{
             fontFamily:'outfit-bold',
             fontSize: 30
-        }}>my-business</Text>
+        }}>My Business</Text>
 
         <FlatList
             data={businessList}

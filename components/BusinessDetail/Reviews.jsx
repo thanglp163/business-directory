@@ -27,7 +27,6 @@ export default function Reviews({ business }) {
                     userEmail:user?.primaryEmailAddress?.emailAddress
                 }),
             });
-
             showMessage({
                 message: 'Comment Added Successfully!',
                 type: 'success',
