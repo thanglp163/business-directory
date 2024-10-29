@@ -45,7 +45,7 @@ export default function LoginScreen() {
 
       <View style={styles.subContainer}>
         <Text style={{
-          fontSize:40,
+          fontSize:30,
           fontFamily: 'outfit-bold',
           textAlign: 'center'
         }}>Your Ultimate 
