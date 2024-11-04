@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { Rating } from 'react-native-ratings';
 import { Colors } from '../../constants/Colors';
@@ -27,19 +27,20 @@ export default function Reviews({ business }) {
                     userEmail:user?.primaryEmailAddress?.emailAddress
                 }),
             });
-            showMessage({
-                message: 'Comment Added Successfully!',
-                type: 'success',
-                icon: { icon: 'success', position: 'left' },
-                backgroundColor: Colors.PRIMARY,
-                color: '#fff',
-                duration: 2000,
-                titleStyle: { textAlign: 'center' },
-                descriptionStyle: { textAlign: 'center' },
-                style: { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5, paddingVertical: 2.5, borderRadius: 10, alignSelf: 'center', width: '70%', flexDirection: 'row'},
-            });
+            Alert.alert(
+                'Success',
+                'Comment Added Successfully!',
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: true }
+            );
         } catch (error) {
             console.error('Error Adding Review:', error);
+            Alert.alert(
+                'Error',
+                'Failed to add comment. Please try again.',
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: true }
+            );
         }
     };
 
